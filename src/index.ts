@@ -1,3 +1,4 @@
+import { exit } from 'process';
 import promptSync from 'prompt-sync';
 
 const prompt = promptSync();
@@ -15,6 +16,106 @@ const prompt = promptSync();
 // -  BONUS: hvezdicky vypise nakonec a na jeden radek, ne po kazdem cisle zvlast.
 // Program potom uzavrete do funkce "cislaO1"
 
+function cisla01() {
+let otazka1 : string = ""
+let otazka2 : string = ""
+let otazka3 : string = ""
+//let index : number = 0
+for(let index : number = 0; index < 6; index++){
+let otazka01 : string = prompt("zadej prvni cislo : ")
+let otazka02 : string = prompt("zadej druhe cislo : ")
+let otazka03 : string = prompt("zadej treti cislo : ")
+otazka1 = otazka01
+otazka2 = otazka02
+otazka3 = otazka03
+
+if(Number.isNaN(Number(otazka1 + otazka2 + otazka3))){
+    if(index === 0){
+        console.log("zadej cisla")
+    }else{
+        if(index === 1){
+            console.log("ZADEJ CISLA!!!")
+        }else{
+            if(index === 2){
+                console.log("NECHTEJ ABYCH SE NASTVAL!!!")
+            }else{
+                if(index === 3){
+                    console.log("POSLEDNI SANCE!!!")
+                }else{
+                    if(index === 4){
+                        console.log("DELAS SI SRANDU!!!")
+                    }else{
+                        console.log(".")
+                        console.log("..")
+                        console.log("...")
+                        console.log("debil detekovan, vypinani")
+                        exit(1)
+                    }
+                }
+            }
+    }
+    }
+}else{
+break
+}
+}
+
+
+
+let cislo1 : number = Number(otazka1);
+let cislo2 : number = Number(otazka2);
+let cislo3 : number = Number(otazka3);
+
+let odpoved1 : number = cislo1 + cislo2 + cislo3;
+let odpoved2 : number = cislo1 * cislo2 * cislo3;
+let odpoved3 : number = odpoved1 / 3;
+let nejvetsicislo : number
+let nejmensicislo : number
+if(cislo1 > cislo2){
+    if (cislo1 > cislo3){
+        nejvetsicislo = cislo1
+    }else{
+        nejvetsicislo = cislo3
+    }
+}else{
+    if(cislo2 > cislo3){
+        nejvetsicislo = cislo2
+    }else{
+        nejvetsicislo = cislo3
+    }
+}
+if(cislo1 < cislo2){
+    if (cislo1 < cislo3){
+        nejmensicislo = cislo1
+    }else{
+        nejmensicislo = cislo3
+    }
+}else{
+    if(cislo2 < cislo3){
+        nejmensicislo = cislo2
+    }else{
+        nejmensicislo = cislo3
+    }
+}
+let odpoved4 : number = nejvetsicislo - nejmensicislo
+let ciselnadsto : string = ""
+if(cislo1 > 100){
+    ciselnadsto=ciselnadsto + "*"
+}
+if(cislo2 > 100){
+    ciselnadsto=ciselnadsto + "*"
+}
+if(cislo3 > 100){
+    ciselnadsto=ciselnadsto + "*"
+}
+console.log(odpoved1)
+console.log(odpoved2)
+console.log(odpoved3)
+console.log(odpoved4)
+console.log(ciselnadsto)
+}
+
+//cisla()
 
 // ULOHA O2:
 // Napiste program, ktery
@@ -26,6 +127,88 @@ const prompt = promptSync();
 // 4. Urci, kolik PROCENT samohlasek je v zadanych textech. Mezery vubec nepocitame.
 // 5. Vypise nejvetsi text v LEXIKOGRAFICKEM usporadani.
 // Program potom uzavrete do funkce "textyO2"
+
+function texty02(){
+    let otazka01 : string = prompt("zadej prvni text : ")
+    let otazka02 : string = prompt("zadej druhy text : ")
+    let otazka03 : string = prompt("zadej treti text : ")
+    let obtext01 : string = ""
+    let obtext02 : string = ""
+    let obtext03 : string = ""
+    
+    for(let index = otazka01.length; index > 0; index++) {
+        let pomcona : string = otazka01.charAt(index)
+        obtext01 = obtext01 + pomcona
+    }
+    for(let index = otazka02.length; index > 0; index++) {
+        let pomcona : string = otazka02.charAt(index)
+        obtext02 = obtext02 + pomcona
+    }
+    for(let index = otazka03.length; index > 0; index++) {
+        let pomcona : string = otazka03.charAt(index)
+        obtext03 = obtext03 + pomcona
+    }
+    let tdohromady : string = otazka01 + obtext02 + obtext03
+    tdohromady = tdohromady.trim()
+    let delkat : number = tdohromady.length
+    
+    let abeceda : number = 0
+    let samohlasky : number = 0
+        
+    for(let index = 0; index < delkat; index++) {
+        let pomocna : string = tdohromady.charAt(index)
+        pomocna = pomocna.toLocaleLowerCase()
+        if(pomocna >= "a" && pomocna <= "z"){
+            abeceda++
+            if(pomocna === "a" || pomocna === "e" || pomocna === "i" || pomocna === "o" || pomocna === "u"){
+                samohlasky++
+            }
+        }
+
+    }
+
+    let procenta = (samohlasky / abeceda) * 100
+
+    let nejvetsitext : string = ""
+
+
+    if(otazka01 > otazka02){
+        if (otazka01 > otazka03){
+            nejvetsitext = otazka01
+        }else{
+            nejvetsitext = obtext03
+        }
+    }else{
+        if(otazka02 > otazka03){
+            nejvetsitext = obtext02
+        }else{
+            nejvetsitext = otazka03
+        }
+    }
+    
+
+    for(let index : number = 1; index <= 3; index++){ 
+    let ptext : string = ". text obracene je : "
+    if(index === 1){
+        console.log(index + ptext + obtext01)
+    }else{
+        if(index === 2){
+            console.log(index + ptext + obtext02)
+        }else{
+            console.log(index + ptext + obtext03)
+        }
+    }
+    }
+    
+    let ptext : string = "v textu je :"
+    console.log(ptext + delkat + " znaku")
+    console.log(ptext + abeceda + " pismenek us abecedy") 
+    console.log(ptext + samohlasky + " samohlasek")
+    console.log(ptext + procenta + " procent samohlasek")
+    console.log("nejvetsi text podle lexikografickeho usporadani je : " + nejvetsitext)
+}
+
+texty02()
 
 // ULOHA O3:
 // Zadani je totozne, jako u ulohy O1, ALE
@@ -43,6 +226,10 @@ const prompt = promptSync();
 // PO zadani vsech textu program vypocita a vypise vsechny udaje O2-1 .. O2-5
 // Pro reseni teto ulohy NEPOUZIVEJTE pole.
 // Program potom uzavrete do funkce "cislaO4"
+
+
+
+
 
 // ULOHA O5 - bonusova:
 // V predchozich ulohach se MOHLY vyskytnout opakujici se kusy kodu. Pokuste se tato opakovani nahradit funkcemi, a v puvodnich
