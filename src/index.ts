@@ -49,7 +49,7 @@ if(Number.isNaN(Number(otazka1 + otazka2 + otazka3))){
                         console.log("..")
                         console.log("...")
                         console.log("debil detekovan, vypinani")
-                        exit(1)
+                        exit(67)
                     }
                 }
             }
@@ -108,10 +108,10 @@ if(cislo2 > 100){
 if(cislo3 > 100){
     ciselnadsto=ciselnadsto + "*"
 }
-console.log(odpoved1)
-console.log(odpoved2)
-console.log(odpoved3)
-console.log(odpoved4)
+console.log("soucet vsech cisel je : " + odpoved1)
+console.log("soucin vsech cisel je : " + odpoved2)
+console.log("aritmeticky prumer vsech cisel je : " + odpoved3)
+console.log("rozdil mezi nejvetsim a nejmensim cislem je : " + odpoved4)
 console.log(ciselnadsto)
 }
 
@@ -218,6 +218,65 @@ texty02()
 // - PO zadani vsech cisel (tzn. po zadani 0 nebo zaporneho cisla) program vypocita a vypise vsechny udaje O1-1 .. O1-5.
 // Pro reseni teto ulohy NEPOUZIVEJTE pole.
 // Program potom uzavrete do funkce "cislaO3"
+// ULOHA O1: 
+// Napiste program, ktery
+// - se zepta uzivatele postupne na 3 cisla; kazde cislo uzivatel potvrdi odeslanim ENTER
+// - program vypise:
+// 1. Soucet vsech zadanych cisel
+// 2. Soucin vsech zadanych cisel
+// 3. Aritmeticky prumer vsech zadanych cisel
+// 4. Rozdil mezi nejvetsim a nejmensim zadanym cislem
+// 5. Pro kazde zadane cislo vetsi nez 100 vypise program hvezdicku. 
+// -  BONUS: hvezdicky vypise nakonec a na jeden radek, ne po kazdem cisle zvlast.
+// Program potom uzavrete do funkce "cislaO1"
+
+function cisla03(){
+    
+    let pocitadlo : number = 0
+    let soucet : number = 0
+    let soucin : number = 1
+    let prumer : number = 0
+    let nmcislo : number = 1
+    let nvcislo : number = 1
+    let rozdilnmanvcisel : number = 0
+    let hvezdy : string = ""
+    
+    for (;;){
+        let otazka : string = prompt("zadej cislo : ")
+        let cislo : number = Number(otazka)
+        if(cislo <= 0){
+            break
+        }
+        if(Number.isNaN(Number(cislo))){
+            console.log("nauc se cist!!!")
+            break
+        }
+        pocitadlo++
+        soucet = soucet + cislo
+        soucin = soucin * cislo
+
+            if(nmcislo > cislo){
+                nmcislo = cislo
+            }
+        
+
+            if(nvcislo < cislo){
+                nvcislo = cislo
+            }
+        
+        
+        if(cislo < 100){
+            hvezdy = hvezdy + "*"
+        }
+    }
+    prumer = soucet / pocitadlo
+    rozdilnmanvcisel = nvcislo - nmcislo
+    console.log("soucet vsech cisel je : " + soucet)
+    console.log("soucin vsech cisel je : " + soucin)
+    console.log("aritmeticky prumer vsech cisel je : " + prumer)
+    console.log("rozdil mezi nejvetsim a nejmensim cislem je : " + rozdilnmanvcisel)
+    console.log(hvezdy)
+}
 
 // ULOHA O4:
 // Zadani je totozne, jako u ulohy O2, ALE
@@ -226,6 +285,55 @@ texty02()
 // PO zadani vsech textu program vypocita a vypise vsechny udaje O2-1 .. O2-5
 // Pro reseni teto ulohy NEPOUZIVEJTE pole.
 // Program potom uzavrete do funkce "cislaO4"
+// ULOHA O2:
+// Napiste program, ktery
+// - se zepta uzivatele na 3 texty; kazdy text uzivatel potvrdi odeslanim ENTER
+// - program vypise:
+// 1. Zadane texty v OPACNEM poradi, nez jak byly zadany, vsechny na jeden radek
+// 2. Souhrnnou delku vsech textu, ktere uzivatel zadal. Bonus: nezapocitavejte pripadne uvodni, nebo koncove mezery v zadanych textech.
+// 3. Celkovy pocet PISMEN (zakladni US abecedy) je v zadanych textech, a celkovy pocet SAMOHLASEK.
+// 4. Urci, kolik PROCENT samohlasek je v zadanych textech. Mezery vubec nepocitame.
+// 5. Vypise nejvetsi text v LEXIKOGRAFICKEM usporadani.
+// Program potom uzavrete do funkce "textyO2"
+
+function texty04(){
+    
+    let obracenytext : string = ""
+    let delkatextu : number = 0
+    let abeceda : number = 0
+    let samohlasky : number = 0
+    let nvtext : string = "a"
+    for(;;){
+        let text : string = prompt("zadej text : ")
+        for(let index = text.length; index > 0; index++) {
+            let pomcona : string = text.charAt(index)
+            obracenytext = obracenytext + pomcona
+        }
+        delkatextu = delkatextu + text.length
+        
+        for(let index = 0; index < delkatextu; index++) {
+            let pomocna : string = text.charAt(index)
+            pomocna = pomocna.toLocaleLowerCase()
+            if(pomocna >= "a" && pomocna <= "z"){
+                abeceda++
+                if(pomocna === "a" || pomocna === "e" || pomocna === "i" || pomocna === "o" || pomocna === "u"){
+                    samohlasky++
+                }
+            }
+        }
+        if(text > nvtext){
+            nvtext = text
+        }
+
+        console.log("obraceny text : " + obracenytext)
+
+    }
+    let procenta : number = (samohlasky / abeceda) * 100
+    console.log("delka vsech textu je : " + delkatextu)
+    console.log("pocet pismen zakladni us abecedy v textech je : " + abeceda)
+    console.log("v textech je " + procenta + "% samohlasek")
+    console.log("nejvetsi text podle lexikografickeho usporadani je : " + nvtext)
+}
 
 
 
